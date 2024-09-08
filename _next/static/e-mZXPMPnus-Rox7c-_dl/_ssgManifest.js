@@ -1,1 +1,0 @@
-self.__SSG_MANIFEST=new Set(["\u002Farticles\u002F[slug]","\u002Fi-see","\u002Fi-write"]);self.__SSG_MANIFEST_CB&&self.__SSG_MANIFEST_CB()
