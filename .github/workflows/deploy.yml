@@ -22,11 +22,11 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Copy public folder
-        run: cp -r public out/
+      - name: Add .nojekyll file
+        run: touch out/.nojekyll
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
-          personal_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./out

@@ -3,7 +3,6 @@ import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
 import styles from '@/styles/Home.module.css'
-import imageLoader from '../imageLoader'
 
 const socialLinks = [
   { name: 'Twitter', url: 'https://x.com/joel_knee', icon: '/icons/twitter.svg' },
@@ -13,19 +12,17 @@ const socialLinks = [
 ]
 
 export default function Home() {
-  const prefix = process.env.NODE_ENV === 'production' ? '/personal-site' : ''
   return (
     <div className={styles.container}>
       <Head>
         <title>{"Joel Knee's Fantasyland"}</title>
         <meta name="description" content="Personal site of Joel Knee" />
-        <link rel="icon" href={`${prefix}/favicon.ico`} />
+        <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <main className={styles.main}>
         <div className={styles.profile}>
           <Image
-            loader={imageLoader}
             src="/images/profile-placeholder.jpg"
             alt="Joel Knee"
             width={200}
@@ -39,7 +36,6 @@ export default function Home() {
           {socialLinks.map((link) => (
             <a key={link.name} href={link.url} target="_blank" rel="noopener noreferrer" className={styles.socialLink}>
               <Image 
-                loader={imageLoader}
                 src={link.icon} 
                 alt={link.name} 
                 width={24} 
