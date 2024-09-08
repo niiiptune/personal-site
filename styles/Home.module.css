@@ -32,6 +32,7 @@
   display: flex;
   justify-content: center;
   gap: 1.5rem;
+  margin-bottom: 2rem;
 }
 
 .socialLink {
@@ -40,4 +41,23 @@
 
 .socialLink:hover {
   transform: scale(1.1);
+}
+
+.sections {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.sectionLink {
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #333;
+  text-decoration: none;
+  transition: color 0.2s ease-in-out;
+}
+
+.sectionLink:hover {
+  color: #666;
 }

@@ -1,0 +1,83 @@
+.container {
+  min-height: 100vh;
+  padding: 2rem;
+  background-color: #f4f4f4;
+  position: relative;
+}
+
+.main {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 300;
+  text-align: center;
+  margin-bottom: 2rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.photoGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.photoWrapper {
+  aspect-ratio: 1;
+  overflow: hidden;
+  border-radius: 8px;
+  width: 200px;
+  height: 200px;
+}
+
+.navigation {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.navButton {
+  font-size: 1.5rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #333;
+  transition: color 0.2s ease-in-out;
+}
+
+.navButton:hover {
+  color: #666;
+}
+
+.homeButton {
+  display: inline-block;
+  margin-top: 2rem;
+  padding: 0.5rem 1rem;
+  background-color: #333;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.homeButton:hover {
+  background-color: #555;
+}
+
+.homeLink {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  font-size: 1rem;
+  color: #333;
+  text-decoration: none;
+  transition: color 0.2s ease-in-out;
+}
+
+.homeLink:hover {
+  color: #666;
+}

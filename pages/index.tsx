@@ -1,6 +1,7 @@
 import React from 'react'
 import Head from 'next/head'
 import Image from 'next/image'
+import Link from 'next/link'
 import styles from '@/styles/Home.module.css'
 
 const socialLinks = [
@@ -14,16 +15,16 @@ export default function Home() {
   return (
     <div className={styles.container}>
       <Head>
-        <title>Joel Knee's Fantasyland</title>
-        <meta name="description" content="Personal site of Your Name" />
+        <title>{"Joel Knee's Fantasyland"}</title>
+        <meta name="description" content="Personal site of Joel Knee" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <main className={styles.main}>
         <div className={styles.profile}>
-          <img
+          <Image
             src="/images/profile-placeholder.jpg"
-            alt="https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+            alt="Joel Knee"
             width={200}
             height={200}
             className={styles.profileImage}
@@ -34,9 +35,14 @@ export default function Home() {
         <div className={styles.socialLinks}>
           {socialLinks.map((link) => (
             <a key={link.name} href={link.url} target="_blank" rel="noopener noreferrer" className={styles.socialLink}>
-              <img src={link.icon} alt={link.name} width={24} height={24} />
+              <Image src={link.icon} alt={link.name} width={24} height={24} />
             </a>
           ))}
+        </div>
+
+        <div className={styles.sections}>
+          <Link href="/i-see" className={styles.sectionLink}>I see</Link>
+          <Link href="/i-write" className={styles.sectionLink}>I write</Link>
         </div>
       </main>
     </div>
