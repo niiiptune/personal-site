@@ -25,7 +25,7 @@ export default function Home() {
       <main className={styles.main}>
         <div className={styles.profile}>
           <Image
-            loader={imageLoader as any} // Type assertion to avoid TypeScript error
+            loader={imageLoader}
             src="/images/profile-placeholder.jpg"
             alt="Joel Knee"
             width={200}
@@ -39,7 +39,7 @@ export default function Home() {
           {socialLinks.map((link) => (
             <a key={link.name} href={link.url} target="_blank" rel="noopener noreferrer" className={styles.socialLink}>
               <Image 
-                loader={imageLoader as any} // Type assertion to avoid TypeScript error
+                loader={imageLoader}
                 src={link.icon} 
                 alt={link.name} 
                 width={24} 
