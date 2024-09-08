@@ -4,6 +4,9 @@ const nextConfig = {
   images: {
     domains: ['readwise-assets.s3.amazonaws.com'],
   },
+  output: 'export',
+  assetPrefix: process.env.NODE_ENV === 'production' ? '/personal-site' : '',
+  basePath: process.env.NODE_ENV === 'production' ? '/personal-site' : '',
 }
 
 module.exports = nextConfig
