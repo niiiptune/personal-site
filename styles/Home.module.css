@@ -1,0 +1,43 @@
+.container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #f4f4f4;
+}
+
+.main {
+  text-align: center;
+}
+
+.profile {
+  margin-bottom: 2rem;
+}
+
+.profileImage {
+  border-radius: 50%;
+  border: 4px solid #333;
+}
+
+.name {
+  font-size: 2rem;
+  font-weight: 300;
+  margin-top: 1rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.socialLinks {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.socialLink {
+  transition: transform 0.2s ease-in-out;
+}
+
+.socialLink:hover {
+  transform: scale(1.1);
+}
