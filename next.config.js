@@ -2,12 +2,8 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    unoptimized: true,
+    domains: ['i.imgur.com'],
   },
-  output: 'export',
-  assetPrefix: process.env.NODE_ENV === 'production' ? '/personal-site/' : '',
-  basePath: process.env.NODE_ENV === 'production' ? '/personal-site' : '',
-  trailingSlash: true,
 }
 
 module.exports = nextConfig

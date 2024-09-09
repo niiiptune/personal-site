@@ -2,39 +2,71 @@ import React, { useState } from 'react'
 import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
-import fs from 'fs'
-import path from 'path'
+import axios from 'axios'
 import styles from '@/styles/ISee.module.css'
-import imageLoader from '../imageLoader'
+
+interface ImgurImage {
+  id: string;
+  link: string;
+}
+
+interface ImgurAlbumResponse {
+  data: ImgurImage[];
+  success: boolean;
+  status: number;
+}
 
 export async function getStaticProps() {
-  const photosDirectory = path.join(process.cwd(), 'public/photos')
-  const photoFiles = fs.readdirSync(photosDirectory)
+  const albumHash = process.env.IMGUR_ALBUM_HASH; // Replace with your Imgur album hash
+  const clientId =  process.env.IMGUR_CLIENT_ID; // Replace with your Imgur client ID
 
-  const imageExtensions = ['.jpg', '.jpeg', '.png', '.gif', '.webp']
-  const photos = photoFiles
-    .filter(filename => imageExtensions.includes(path.extname(filename).toLowerCase()))
-    .map(filename => {
-      const filePath = path.join(photosDirectory, filename)
-      const stats = fs.statSync(filePath)
-      return {
-        filename,
-        path: `/photos/${filename}`,
-        mtime: stats.mtime.toISOString()
+  if (!albumHash || !clientId) {
+    console.error('Imgur album hash or client ID is missing');
+    return { props: { images: [] } };
+  }
+
+  try {
+    const response = await axios.get<ImgurAlbumResponse>(
+      `https://api.imgur.com/3/album/${albumHash}/images`,
+      {
+        headers: {
+          Authorization: `Client-ID ${clientId}`
+        }
       }
-    })
-    .sort((a, b) => new Date(b.mtime).getTime() - new Date(a.mtime).getTime())
+    );
 
-  return {
-    props: {
-      photos
+    console.log('Imgur API response:', JSON.stringify(response.data, null, 2));
+
+    if (!response.data || !Array.isArray(response.data.data)) {
+      console.error('Unexpected Imgur API response structure');
+      return { props: { images: [] } };
     }
+
+    const images = response.data.data.map(img => ({
+      id: img.id,
+      link: img.link
+    }));
+
+    return {
+      props: {
+        images
+      },
+      revalidate: 3600 // Revalidate every hour
+    };
+  } catch (error) {
+    console.error('Error fetching Imgur album:', error);
+    return {
+      props: {
+        images: []
+      }
+    };
   }
 }
 
-export default function ISee({ photos }: { photos: Array<{ filename: string, path: string, mtime: string }> }) {
+export default function ISee({ images }: { images: ImgurImage[] }) {
   const [page, setPage] = useState(0)
-  const currentPhotos = photos.slice(page * 9, (page + 1) * 9)
+  const photosPerPage = 9
+  const currentPhotos = images.slice(page * photosPerPage, (page + 1) * photosPerPage)
 
   return (
     <div className={styles.container}>
@@ -49,12 +81,11 @@ export default function ISee({ photos }: { photos: Array<{ filename: string, pat
       <main className={styles.main}>
         <h1 className={styles.title}>I See</h1>
         <div className={styles.photoGrid}>
-          {currentPhotos.map((photo, index) => (
-            <div key={index} className={styles.photoWrapper}>
+          {currentPhotos.map((photo) => (
+            <div key={photo.id} className={styles.photoWrapper}>
               <Image 
-                loader={imageLoader}
-                src={photo.path} 
-                alt={`Photo ${index + 1}`} 
+                src={photo.link} 
+                alt={`Photo ${photo.id}`} 
                 width={200} 
                 height={200} 
                 style={{ objectFit: 'cover' }}
@@ -68,7 +99,7 @@ export default function ISee({ photos }: { photos: Array<{ filename: string, pat
               &lt;
             </button>
           )}
-          {(page + 1) * 9 < photos.length && (
+          {(page + 1) * photosPerPage < images.length && (
             <button onClick={() => setPage(page + 1)} className={styles.navButton}>
               &gt;
             </button>
