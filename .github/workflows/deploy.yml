@@ -23,9 +23,7 @@ jobs:
         run: npm run build
 
       - name: Add .nojekyll file
-        run: |
-          touch out/.nojekyll
-          echo "personal-site.com" > out/CNAME
+        run: touch out/.nojekyll
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
