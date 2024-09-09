@@ -30,6 +30,7 @@ export default function Home() {
             width={200}
             height={200}
             className={styles.profileImage}
+            unoptimized
           />
           <h1 className={styles.name}>Joel Knee</h1>
         </div>
@@ -42,7 +43,8 @@ export default function Home() {
                 src={link.icon} 
                 alt={link.name} 
                 width={24} 
-                height={24} 
+                height={24}
+                unoptimized
               />
             </a>
           ))}

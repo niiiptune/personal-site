@@ -22,9 +22,6 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Copy public folder
-        run: cp -r public out/
-
       - name: Add .nojekyll file
         run: touch out/.nojekyll
 

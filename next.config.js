@@ -7,7 +7,7 @@ const nextConfig = {
     unoptimized: true,
   },
   output: 'export',
-  assetPrefix: process.env.NODE_ENV === 'production' ? '/personal-site' : '',
+  assetPrefix: process.env.NODE_ENV === 'production' ? '/personal-site/' : '',
   basePath: process.env.NODE_ENV === 'production' ? '/personal-site' : '',
 }
 
