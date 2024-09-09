@@ -6,6 +6,7 @@ import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
 import styles from '@/styles/IWrite.module.css'
+import imageLoader from '../imageLoader'
 
 interface Article {
   slug: string;
@@ -81,6 +82,7 @@ export default function IWrite({ articles }: { articles: Article[] }) {
                 {article.thumbnail && (
                   <div className={styles.thumbnailWrapper}>
                     <Image 
+                      loader={imageLoader}
                       src={article.thumbnail} 
                       alt={`Thumbnail for ${article.title}`} 
                       width={200} 

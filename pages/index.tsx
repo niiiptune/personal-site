@@ -3,6 +3,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
 import styles from '@/styles/Home.module.css'
+import imageLoader from '../imageLoader'
 
 const socialLinks = [
   { name: 'Twitter', url: 'https://x.com/joel_knee', icon: '/icons/twitter.svg' },
@@ -23,6 +24,7 @@ export default function Home() {
       <main className={styles.main}>
         <div className={styles.profile}>
           <Image
+            loader={imageLoader}
             src="/images/profile-placeholder.jpg"
             alt="Joel Knee"
             width={200}
@@ -36,6 +38,7 @@ export default function Home() {
           {socialLinks.map((link) => (
             <a key={link.name} href={link.url} target="_blank" rel="noopener noreferrer" className={styles.socialLink}>
               <Image 
+                loader={imageLoader}
                 src={link.icon} 
                 alt={link.name} 
                 width={24} 

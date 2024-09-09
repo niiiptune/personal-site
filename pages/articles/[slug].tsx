@@ -9,6 +9,7 @@ import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import styles from '@/styles/Article.module.css'
 import { GetStaticProps, GetStaticPaths } from 'next'
+import imageLoader from '../../imageLoader'
 
 interface ArticleProps {
   article: {
@@ -52,6 +53,7 @@ const CustomImage = ({ src, alt }: { src: string; alt: string }) => {
   return (
     <div className={styles.imageWrapper}>
       <Image
+        loader={imageLoader}
         src={src}
         alt={alt}
         fill

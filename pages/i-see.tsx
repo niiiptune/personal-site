@@ -5,6 +5,7 @@ import Link from 'next/link'
 import fs from 'fs'
 import path from 'path'
 import styles from '@/styles/ISee.module.css'
+import imageLoader from '../imageLoader'
 
 export async function getStaticProps() {
   const photosDirectory = path.join(process.cwd(), 'public/photos')
@@ -51,6 +52,7 @@ export default function ISee({ photos }: { photos: Array<{ filename: string, pat
           {currentPhotos.map((photo, index) => (
             <div key={index} className={styles.photoWrapper}>
               <Image 
+                loader={imageLoader}
                 src={photo.path} 
                 alt={`Photo ${index + 1}`} 
                 width={200} 
