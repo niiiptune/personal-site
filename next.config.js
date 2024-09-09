@@ -4,6 +4,7 @@ const nextConfig = {
   images: {
     loader: 'custom',
     loaderFile: './imageLoader.ts',
+    unoptimized: true,
   },
   output: 'export',
   assetPrefix: process.env.NODE_ENV === 'production' ? '/personal-site' : '',

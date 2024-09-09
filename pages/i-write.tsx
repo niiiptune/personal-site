@@ -29,8 +29,8 @@ export async function getStaticProps() {
       const stats = fs.statSync(filePath)
 
       const lines = content.split('\n')
-      const title = lines.find(line => line.startsWith('# '))?.slice(2) || 'No Title'
-      const subtitle = lines.find(line => line.startsWith('## '))?.slice(3) || ''
+      const title = lines.find((line: string) => line.startsWith('# '))?.slice(2) || 'No Title'
+      const subtitle = lines.find((line: string) => line.startsWith('## '))?.slice(3) || ''
 
       const imageMatch = content.match(/!\[.*?\]\((.*?)\)/)
       const thumbnail = imageMatch ? imageMatch[1] : null

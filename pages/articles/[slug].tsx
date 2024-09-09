@@ -81,8 +81,8 @@ export default function Article({ article }: ArticleProps) {
           <ReactMarkdown 
             remarkPlugins={[remarkGfm]}
             components={{
-              img: ({ src, alt }) => <CustomImage src={src || ''} alt={alt || ''} />,
-              p: ({ children }) => {
+              img: ({ src, alt }: { src?: string; alt?: string }) => <CustomImage src={src || ''} alt={alt || ''} />,
+              p: ({ children }: { children: React.ReactNode }) => {
                 if (React.isValidElement(children) && children.type === CustomImage) {
                   return <>{children}</>
                 }
