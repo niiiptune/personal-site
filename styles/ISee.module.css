@@ -19,17 +19,24 @@
   text-transform: uppercase;
 }
 
+.photoGridContainer {
+  display: flex;
+  justify-content: center;
+}
+
 .photoGrid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, 200px);
   gap: 1rem;
   margin-bottom: 2rem;
 }
 
 .photoWrapper {
+  position: relative;
   aspect-ratio: 1;
   overflow: hidden;
   border-radius: 8px;
+  cursor: pointer;
   width: 200px;
   height: 200px;
 }
@@ -53,21 +60,6 @@
   color: #666;
 }
 
-.homeButton {
-  display: inline-block;
-  margin-top: 2rem;
-  padding: 0.5rem 1rem;
-  background-color: #333;
-  color: #fff;
-  text-decoration: none;
-  border-radius: 4px;
-  transition: background-color 0.2s ease-in-out;
-}
-
-.homeButton:hover {
-  background-color: #555;
-}
-
 .homeLink {
   position: absolute;
   top: 1rem;
@@ -80,4 +72,35 @@
 
 .homeLink:hover {
   color: #666;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modalImageContainer {
+  position: relative;
+  width: 90%;
+  height: 90%;
+}
+
+.closeButton {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 2rem;
+  cursor: pointer;
+  z-index: 1001;
 }
